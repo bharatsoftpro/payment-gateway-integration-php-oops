@@ -181,23 +181,6 @@ class XyzPay extends StandardPayment implements StandardPaymentService, PaymentP
 }
 
 /**
- * Class PaymentGateway
- */
-class PaymentGateway
-{
-    /**
-     * DI based on payment gateway
-     * @param PaymentProcessService $paymentProcessService
-     * @return mixed
-     */
-    public function takePayment(PaymentProcessService $paymentProcessService)
-    {
-        debug($paymentProcessService);
-        return $paymentProcessService->process();
-    }
-}
-
-/**
  * Class EtcPay
  */
 class EtcPay extends StandardPayment implements StandardPaymentService, PaymentProcessService, FraudCheckService
@@ -246,6 +229,25 @@ class EtcPay extends StandardPayment implements StandardPaymentService, PaymentP
         return $this;
     }
 }
+
+
+/**
+ * Class PaymentGateway
+ */
+class PaymentGateway
+{
+    /**
+     * DI based on payment gateway
+     * @param PaymentProcessService $paymentProcessService
+     * @return mixed
+     */
+    public function takePayment(PaymentProcessService $paymentProcessService)
+    {
+        debug($paymentProcessService);
+        return $paymentProcessService->process();
+    }
+}
+
 
 //TEST and todo: make db call for specific payment gateway & its setting from db.
 try {
